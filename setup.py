@@ -19,18 +19,18 @@ def get_version(rel_path: str) -> str:
 
 
 setup(
-    name='chris-plugin-template',
-    version=get_version('app.py'),
-    description='A ChRIS DS plugin template',
+    name='images-register',
+    version=get_version('images_register.py'),
+    description='A ChRIS plugin to do multiple image registration',
     author='FNNDSC',
-    author_email='dev@babyMRI.org',
-    url='https://github.com/FNNDSC/python-chrisapp-template',
-    py_modules=['app'],
+    author_email='arman.avasta@childrens.harvard.edu',
+    url='https://github.com/FNNDSC/pl-images-regi',
+    py_modules=['images_register'],
     install_requires=['chris_plugin'],
     license='MIT',
     entry_points={
         'console_scripts': [
-            'commandname = app:main'
+            'images_register = images_register:main'
         ]
     },
     classifiers=[
