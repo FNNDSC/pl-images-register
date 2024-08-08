@@ -10,7 +10,7 @@ creates ... as output files.
 
 ## Abstract
 
-...
+This plugin registers one or more images from its input directory to a single reference or fixed image.
 
 ## Installation
 
