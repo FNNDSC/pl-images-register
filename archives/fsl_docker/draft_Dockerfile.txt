@@ -15,3 +15,5 @@ echo ". ${FSLDIR}/etc/fslconf/fsl.sh" >> ~/.bash_profile
 echo "PATH=${FSLDIR}/bin:${PATH}" >> ~/.bash_profile
 source ~/.bash_profile
 
+
+
