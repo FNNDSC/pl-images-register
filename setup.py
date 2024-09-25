@@ -39,27 +39,28 @@ def parse_requirements(file_path):
 
     return requirements
 
-def get_version(rel_path: str) -> str:
-    """
-    Searches for the ``__version__ = `` line in a source code file.
-
-    https://packaging.python.org/en/latest/guides/single-sourcing-package-version/
-    """
-    _version_re = re.compile(r"(?<=^__version__ = (\"|'))(.+)(?=\"|')")
-    with open(rel_path, 'r') as f:
-        matches = map(_version_re.search, f)
-        filtered = filter(lambda m: m is not None, matches)
-        version = next(filtered, None)
-        if version is None:
-            raise RuntimeError(f'Could not find __version__ in {rel_path}')
-        return version.group(0)
+# def get_version(rel_path: str) -> str:
+#     """
+#     Searches for the ``__version__ = `` line in a source code file.
+#
+#     https://packaging.python.org/en/latest/guides/single-sourcing-package-version/
+#     """
+#     _version_re = re.compile(r"(?<=^__version__ = (\"|'))(.+)(?=\"|')")
+#     with open(rel_path, 'r') as f:
+#         matches = map(_version_re.search, f)
+#         filtered = filter(lambda m: m is not None, matches)
+#         version = next(filtered, None)
+#         if version is None:
+#             raise RuntimeError(f'Could not find __version__ in {rel_path}')
+#         return version.group(0)
 
 
 # ------------------------------------------------- MAIN FUNCTIONS ----------------------------------------------------
 
 setup(
     name='images-register',
-    version=get_version('images_register.py'),      # version='1.0.0
+    # version=get_version('images_register.py'),
+    version='1.0.0',
     description='A ChRIS plugin to do multiple image registration',
     author='FNNDSC',
     author_email='arman.avasta@childrens.harvard.edu',
@@ -85,3 +86,7 @@ setup(
         ]
     }
 )
+
+
+# -------------------------------------------------- CODE TESTING -----------------------------------------------------
+
