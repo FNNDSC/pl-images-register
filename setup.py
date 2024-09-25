@@ -1,7 +1,43 @@
+"""
+Developed by Arman Avesta, MD, PhD
+FNNDSC | Boston Children's Hospital | Harvard Medical School
+
+This module sets up the image registration plugin.
+"""
+
+# ----------------------------------------------- ENVIRONMENT SETUP ---------------------------------------------------
+# Project imports:
+
+
+# System imports:
 from setuptools import setup
 import re
 
-_version_re = re.compile(r"(?<=^__version__ = (\"|'))(.+)(?=\"|')")
+# ------------------------------------------------ HELPER FUNCTIONS ---------------------------------------------------
+
+def parse_requirements(file_path):
+    """
+    Parse the requirements.txt file and return a list of requirements, ignoring comments.
+
+    Parameters:
+    file_path (str): Path to the requirements.txt file.
+
+    Returns:
+    list: List of package names.
+    """
+    requirements = []
+    with open(file_path, 'r') as file:
+        for line in file:
+            # Strip whitespace and newline characters
+            line = line.strip()
+            # Skip empty lines and comments
+            if not line or line.startswith('#'):
+                continue
+            # Split the line on the first occurrence of '~='
+            package = line.split('~=')[0]
+            requirements.append(package)
+
+    return requirements
 
 def get_version(rel_path: str) -> str:
     """
@@ -9,6 +45,7 @@ def get_version(rel_path: str) -> str:
 
     https://packaging.python.org/en/latest/guides/single-sourcing-package-version/
     """
+    _version_re = re.compile(r"(?<=^__version__ = (\"|'))(.+)(?=\"|')")
     with open(rel_path, 'r') as f:
         matches = map(_version_re.search, f)
         filtered = filter(lambda m: m is not None, matches)
@@ -18,13 +55,15 @@ def get_version(rel_path: str) -> str:
         return version.group(0)
 
 
+# ------------------------------------------------- MAIN FUNCTIONS ----------------------------------------------------
+
 setup(
     name='images-register',
-    version=get_version('images_register.py'),
+    version=get_version('images_register.py'),      # version='1.0.0
     description='A ChRIS plugin to do multiple image registration',
     author='FNNDSC',
     author_email='arman.avasta@childrens.harvard.edu',
-    url='https://github.com/FNNDSC/pl-images-regi',
+    url='https://github.com/FNNDSC/pl-images-register',
     py_modules=['images_register'],
     install_requires=['chris_plugin'],
     license='MIT',

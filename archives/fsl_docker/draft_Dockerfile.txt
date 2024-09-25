@@ -1,0 +1,17 @@
+python3 -m pip install --upgrade certifi
+python3 -m certifi
+
+echo "export SSL_CERT_FILE=$(python3 -m certifi)" >> ~/.bash_profile
+source ~/.bash_profile
+
+
+wget https://fsl.fmrib.ox.ac.uk/fsldownloads/fslconda/releases/fslinstaller.py
+
+chmod +x fslinstaller.py
+python3 fslinstaller.py -q
+
+echo "export FSLDIR=/usr/local/fsl" >> ~/.bash_profile
+echo ". ${FSLDIR}/etc/fslconf/fsl.sh" >> ~/.bash_profile
+echo "PATH=${FSLDIR}/bin:${PATH}" >> ~/.bash_profile
+source ~/.bash_profile
+

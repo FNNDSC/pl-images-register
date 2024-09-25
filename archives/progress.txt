@@ -1,0 +1,41 @@
+
+1. I replaced FSL's FLIRT registration with SimpleITK-based multi-resolution rigid registration. As a result, we don't
+need to deal with installing FSL on our container. Also it's much faster than FSL's FLIRT (10-15 s vs 2-3 mins).
+
+2. I updated the resampling strategy to use B-splines instead of tri-linear interpolation --> the resultant registered
+images now how a high quality (it wasn't the case with FLIRT registration).
+
+3. I didn't use any unsupported required packages, so that the plugin can be built.
+While I temporarily dodged the bullet by avoiding these "unsupported" packages, I'm sure this issue will come up,
+especially given that my tests show that even widely-used and necessary packages such as torch and monai lead to
+errors in building the plugin.
+
+
+
+
+
+Jennings Zhang
+Hi @arman.avesta:matrix.org. My name is Jennings, I am usually the one who you call if you have build problems. However, I'm currently on vacation. I will still peek at these chats every now and then.
+
+I strongly recommend building (and testing) locally before you push to GitHub. The builds on GitHub are relatively slow. (The fact that GitHub builds our projects for us automatically is a pretty advanced thing in the first place.)
+
+To build locally, run
+
+
+docker build -t localhost/fnndsc/pl-image-register:latest .
+
+Jennings Zhang
+In your GitHub build logs, I see the error message is gcc: command not found. This error message has to do with how Python's ecosystem of community libraries, including monai, torch, and nipype, is somewhat messy and fragmented. But fear not, you can definitely use these libraries.
+
+In the first line of Dockerfile, where you see the FROM statement, you are declaring the version of Python to use as version 3.12.1. Python version 3.12 is pretty new and many libraries don't fully support it yet.
+
+As I said, this is a messy issue. Here are some things you can try:
+
+Try changing the version of python to FROM docker.io/library/python:3.11.9-slim-bookworm.
+If that doesn't work, try docker.io/library/python:3.11.9-bookworm (no more -slim)
+Here is what's happening: some Python packages, such as pytorch, are comprised of a mix of C code and Python code. In order to install pytorch as a dependency, the C code needs to be compiled. Some pre-compiled pytorch packages are available, but they are more likely to be available for Python version 3.11 and unavailable for Python 3.12.
+
+If downgrading to Python version 3.11 isn't enough to fix things, then you will need to try the non-"slim" image. The non-slim image contains a C compiler (gcc) so it is likely that it will solve all of your problems. However, I recommend using non-slim images as a last resort. It is a nuclear option. The cost of using the non-slim image is that the container image for your ChRIS plugin will be an extra 300MB in compressed size, and the time it takes to build will increase from 1 minute to 10-60 minutes.
+
+There are more advanced alternatives you can explore (such as using conda-forge instead of pypi).
+

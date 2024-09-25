@@ -4,8 +4,8 @@
 FROM docker.io/python:3.12.1-slim-bookworm
 
 LABEL org.opencontainers.image.authors="FNNDSC <arman.avasta@childrens.harvard.edu>" \
-      org.opencontainers.image.title="Multiple image registration" \
-      org.opencontainers.image.description="A ChRIS plugin to do multiple image registration"
+      org.opencontainers.image.title="Images registration" \
+      org.opencontainers.image.description="A ChRIS plugin to do image registration"
 
 ARG SRCDIR=/usr/local/src/pl-images-register
 WORKDIR ${SRCDIR}
