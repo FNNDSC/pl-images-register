@@ -123,7 +123,7 @@ def main(options: Namespace, inputdir: Path, outputdir: Path):
 
     else:
         moving_images_list = sub_niftis(join(inputdir, options.moving_images_folder), complete_path=False)
-        for i, moving_image in enumerate(moving_images_list):
+        for moving_image in moving_images_list:
             moving_image_path = join(inputdir, options.moving_images_folder, moving_image)
             registered_image_path = join(outputdir, options.moving_images_folder,
                                          options.moving_image.replace('.nii.gz', '_registered.nii.gz'))
