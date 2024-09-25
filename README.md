@@ -44,6 +44,40 @@ mv fixed_image.nii.gz moving_image.nii.gz incoming
 apptainer exec docker://fnndsc/pl-images-register:latest images_register [--args] incoming outgoing
 ```
 
+If there is only one moving image, it will be registered onto the fixed image.
+If there are multiple moving images, each one will be registered to the fixed image separately.
+
+For multiple moving images, all of them should be placed in a folder, and the folder should be passed to the 
+parser under moving_images_folder.
+
+Example 1:
+
+Inputs: 
+```shell
+    input_dir/fixed_image.nii.gz
+    input_dir/moving_image.nii.gz 
+```
+Outputs:
+```shell
+    output_dir/moving_image_registered.nii.gz
+    output_dir/moving_image_transform.mat
+``` 
+Example 2:
+
+Inputs: 
+```shell
+    input_dir/fixed_image.nii.gz
+    input_dir/moving_images_folder/moving_image1.nii.gz, moving_image2.nii.gz, moving_image3.nii.gz, etc.
+```
+Outputs:
+```shell
+    output_dir/moving_images_folder/moving_image1_registered.nii.gz, moving_image2_registered.nii.gz, 
+        moving_image3.nii.gz, etc.
+    output_dir/moving_images_folder/moving_image1_transform.mat, moving_image2_transform.mat, 
+        moving_image3_transform.mat, etc.
+```
+Please not that all images (fixed, moving, registered) must be in nii.gz format.
+
 ## Development
 
 The registration algorithms are found in images_register.py module.
