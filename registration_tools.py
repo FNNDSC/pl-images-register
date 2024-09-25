@@ -21,6 +21,20 @@ from datetime import datetime
 # ----------------------------------------------- MAIN FUNCTIONS ------------------------------------------------------
 
 def rigid_registration(fixed_image_path, moving_image_path, registered_image_path, transform_matrix_path):
+    """
+    Function to perform rigid registration between two images.
+    Parameters
+        fixed_image_path : str: Path to the fixed image.
+        moving_image_path : str: Path to the moving image.
+        registered_image_path : str: Path to the registered image.
+        transform_matrix_path : str: Path to the transform matrix.
+
+    Returns:
+        None.
+
+    Side Effects:
+        Saves registered image and transform matrix to disk (to registered_image_path and transform_matrix_path).
+    """
     # Read the images
     fixed_image = sitk.ReadImage(fixed_image_path, sitk.sitkFloat32)
     moving_image = sitk.ReadImage(moving_image_path, sitk.sitkFloat32)
