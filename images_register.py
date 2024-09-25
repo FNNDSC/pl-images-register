@@ -36,8 +36,8 @@ parser = ArgumentParser(description='This plugin registers a moving 3D image (CT
                                     'the transformation matrix. The fixed, moving, and registered moving images '
                                     'are all in NIfTI format.',
                         formatter_class=ArgumentDefaultsHelpFormatter)
-parser.add_argument('-V', '--version', action='version',
-                    version=f'%(prog)s {__version__}')
+# parser.add_argument('-V', '--version', action='version',
+#                     version=f'%(prog)s {__version__}')
 
 parser.add_argument('--fixed_image', type=str, default='fixed_image.nii.gz',
                     help='relative path to the fixed image in relation to input folder')
