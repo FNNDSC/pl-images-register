@@ -6,6 +6,9 @@ This module sets up the image registration plugin.
 """
 
 # ----------------------------------------------- ENVIRONMENT SETUP ---------------------------------------------------
+# Global variables:
+VERSION='1.0.0'     # <-------------------------- SET VERSION HERE
+
 # Project imports:
 
 
@@ -60,7 +63,7 @@ def parse_requirements(file_path):
 setup(
     name='images-register',
     # version=get_version('images_register.py'),
-    version='1.0.0',
+    version=VERSION,
     description='A ChRIS plugin to do multiple image registration',
     author='FNNDSC',
     author_email='arman.avasta@childrens.harvard.edu',

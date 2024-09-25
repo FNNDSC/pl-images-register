@@ -16,7 +16,7 @@ from argparse import ArgumentParser, Namespace, ArgumentDefaultsHelpFormatter
 from chris_plugin import chris_plugin
 
 # Version:
-__version__ = '1.0.1'
+# __version__ = '1.0.1'
 
 # ---------------------------------------------- ARGUMENT PARSING -----------------------------------------------------
 

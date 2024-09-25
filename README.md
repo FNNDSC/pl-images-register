@@ -34,19 +34,19 @@ apptainer exec docker://fnndsc/pl-images-register images_register --help
 
 ## Examples
 
-`images_register` requires two positional arguments: a directory containing
-input data, and a directory where to create output data.
-First, create the input directory and move input data into it.
+`images_register` requires two positional arguments: a directory containing input images, i.e.
+a fixed_image and a moving_image, and a directory where to create output data, i.e. registered_image and 
+transform_matrix. First, create the input directory and move input data into it.
 
 ```shell
-mkdir incoming/ outgoing/
-mv some.dat other.dat incoming/
-apptainer exec docker://fnndsc/pl-images-register:latest images_register [--args] incoming/ outgoing/
+mkdir incoming outgoing
+mv fixed_image.nii.gz moving_image.nii.gz incoming
+apptainer exec docker://fnndsc/pl-images-register:latest images_register [--args] incoming outgoing
 ```
 
 ## Development
 
-Instructions for developers.
+The registration algorithms are found in images_register.py module.
 
 ### Building
 
