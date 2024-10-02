@@ -3,7 +3,7 @@
 Developed by Arman Avesta, MD, PhD
 FNNDSC | Boston Children's Hospital | Harvard Medical School
 
-This module contains argument parsing and main function for the image_register plugin.
+This module contains argument parsing and main function for the images_register plugin.
 """
 # --------------------------------------------- ENVIRONMENT SETUP -----------------------------------------------------
 # Project imports:
@@ -17,7 +17,7 @@ from argparse import ArgumentParser, Namespace, ArgumentDefaultsHelpFormatter
 from chris_plugin import chris_plugin
 
 # Version:
-# __version__ = '1.0.1'
+__version__ = '1.0.1'
 
 # ---------------------------------------------- ARGUMENT PARSING -----------------------------------------------------
 

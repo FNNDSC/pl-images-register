@@ -13,7 +13,7 @@ This module contains image re-orientation and visualization functions.
 import nibabel as nib
 import matplotlib.pyplot as plt
 
-# # Print configs:
+# Print configs:
 # np.set_printoptions(precision=1, suppress=True)
 
 # ---------------------------------------------- HELPER FUNCTIONS -----------------------------------------------------

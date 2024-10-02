@@ -23,6 +23,7 @@ from datetime import datetime
 def rigid_registration(fixed_image_path, moving_image_path, registered_image_path, transform_matrix_path):
     """
     Function to perform rigid registration between two images.
+
     Parameters
         fixed_image_path : str: Path to the fixed image.
         moving_image_path : str: Path to the moving image.
