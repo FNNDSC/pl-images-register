@@ -127,10 +127,13 @@ def main(options: Namespace, inputdir: Path, outputdir: Path):
         moving_images_list = sub_niftis(join(inputdir, options.moving_images_folder), complete_path=False)
         for moving_image in moving_images_list:
             moving_image_path = join(inputdir, options.moving_images_folder, moving_image)
-            registered_image_path = join(outputdir, options.moving_images_folder,
+            registered_image_path = join(outputdir,
+                                         options.moving_images_folder,
                                          options.moving_image.replace('.nii.gz', '_registered.nii.gz'))
-            transform_matrix_path = join(outputdir, options.moving_images_folder,
-                                          options.moving_image.replace('.nii.gz', '_transform.mat'))
+            transform_matrix_path = join(outputdir,
+                                         options.moving_images_folder,
+                                         options.moving_image.replace('.nii.gz', '_transform.mat'))
+
             rigid_registration(fixed_image_path, moving_image_path, registered_image_path, transform_matrix_path)
 
 # ------------------------------------------------ EXECUTE MAIN -------------------------------------------------------

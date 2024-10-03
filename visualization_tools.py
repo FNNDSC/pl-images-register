@@ -113,5 +113,5 @@ def imgshow(nifti):
 # -------------------------------------------------- CODE TESTING -----------------------------------------------------
 
 if __name__ == '__main__':
-    nifti = nib.load('/Users/arman/projects/pl-image-register/data/nifti/fixed.nii.gz')
+    nifti = nib.load('/Users/arman/projects/pl-images-register/data/nifti/fixed.nii.gz')
     imgshow(nifti)
