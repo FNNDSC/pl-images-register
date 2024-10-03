@@ -42,11 +42,11 @@ parser = ArgumentParser(description='This plugin registers a moving 3D image (CT
 #                     version=f'%(prog)s {__version__}')
 
 """
-If there is only one moving image, it will be registered onto the fixed image.
-If there are multiple moving images, each one will be registered to the fixed image separately.
+If there is only one moving image, it will be registered onto the fixed image. 
+All images (fixed, moving, and registered images) should be in .nii.gz format.
+The registered image and the transform matrix will be saved with these names:
 
-For multiple moving images, all of them should be placed in a folder, and the folder should be passed to the 
-parser under moving_images_folder.
+<moving image name>.nii.gz --> <moving imge name>_registered.nii.gz and <moving image name>_transform.mat
 
 Example 1:
  
@@ -58,6 +58,10 @@ Outputs:
     output_dir/moving_image_registered.nii.gz
     output_dir/moving_image_transform.mat
 
+If there are multiple moving images, each one will be registered to the fixed image separately.
+For multiple moving images, all of them should be placed in a folder, and the folder should be passed to the 
+parser under moving_images_folder.
+
 Example 2:
 
 Inputs: 
@@ -68,9 +72,7 @@ Outputs:
     output_dir/moving_images_folder/moving_image1_registered.nii.gz, moving_image2_registered.nii.gz, 
         moving_image3.nii.gz, etc.
     output_dir/moving_images_folder/moving_image1_transform.mat, moving_image2_transform.mat, 
-        moving_image3_transform.mat, etc.
-        
-Please not that all images (fixed, moving, registered) must be in nii.gz format.
+        moving_image3_transform.mat, etc.    
 """
 
 parser.add_argument('--fixed_image', type=str, default='fixed_image.nii.gz',
